@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="company_info">%1$S was founded by %2$S in
+%3$d. It has now %4$S employees,
+%5$S launch sites, and is valued at USD
+%6$S</string>
+    <string name="rocket_name_type_value">%1$S/%2$S</string>
+    <string name="company">Company</string>
+    <string name="mission">Mission:</string>
+    <string name="date_time">Date/Time:</string>
+    <string name="rocket">Rocket:</string>
+    <string name="days_since_from_now">Days \nsince/from now:</string>
+    <string name="todo">TODO</string>
+    <string name="launches">Launches</string>
+
+    <string name="error_msg">Sorry! Couldn\'t fetch Data.</string>
+    <string name="error_msg_no_internet">Not connected to internet</string>
+    <string name="error_msg_unknown">An unexpected error occurred</string>
+    <string name="tap_to_reload">Tap to reload</string>
+    <string name="okay_button">OK</string>
+    <string name="app_title">SpaceX</string>
+    <string name="filter_successful">Successful</string>
+    <string name="filter_fail">Fail</string>
+    <string name="filter_asc">ASC</string>
+    <string name="filter_desc">DESC</string>
+    <string name="filter_clear">Clear</string>
+    <string name="open_page_with">Open Page with</string>
+    <string name="wikipedia_page">Wikipedia</string>
+    <string name="youtube_page">YouTube</string>
 </resources>

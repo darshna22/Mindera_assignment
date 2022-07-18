@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="activity"
+            type="com.mindera.uilayer.MainActivity" />
+
+        <variable
+            name="viewModel"
+            type="com.mindera.uilayer.SpaceXDataViewModel" />
+
+        <variable
+            name="adapterSpaceXData"
+            type="com.mindera.uilayer.SpaceXDataAdapter" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:isScrollContainer="true"
+        android:scrollbars="vertical"
+        tools:context="com.mindera.uilayer.activity.MainActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white">
+
+            <include
+                android:id="@+id/toolBar"
+                layout="@layout/custom_toolbar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:viewModel="@{viewModel}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/companyTitle" />
+
+            <include
+                android:id="@+id/companyTitle"
+                layout="@layout/title_raw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@+id/toolBar"
+                app:layout_constraintStart_toStartOf="@+id/toolBar"
+                app:layout_constraintTop_toBottomOf="@+id/toolBar" />
+
+            <TextView
+                android:paddingStart="@dimen/padding_10dp"
+                android:paddingEnd="@dimen/padding_10dp"
+                android:id="@+id/companyInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{@string/company_info(viewModel.companyInfoResp.name,viewModel.companyInfoResp.founder,viewModel.companyInfoResp.founded,viewModel.companyInfoResp.employees,viewModel.companyInfoResp.launch_sites,viewModel.currencyValue)}"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@+id/companyTitle" />
+
+            <include
+                android:id="@+id/launches_title"
+                layout="@layout/launches_title_raw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="@+id/companyInfo"
+                app:layout_constraintTop_toBottomOf="@+id/companyInfo" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                app:adapter="@{adapterSpaceXData}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/launches_title"
+                app:layout_constraintTop_toBottomOf="@+id/launches_title" />
+
+            <ProgressBar
+                android:id="@+id/main_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

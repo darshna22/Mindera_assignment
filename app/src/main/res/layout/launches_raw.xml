@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="dateTimeValue"
+            type="String" />
+
+        <variable
+            name="day"
+            type="String" />
+
+        <import type="com.mindera.rocketscience.R" />
+
+        <variable
+            name="dateTimeFormatter"
+            type="com.mindera.rocketscience.utility.UTCTimeConvertor" />
+
+
+        <variable
+            name="model"
+            type="com.mindera.rocketscience.model.AllLaunchesRespItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:paddingTop="@dimen/padding_10dp"
+            android:paddingBottom="@dimen/padding_10dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageView
+                android:id="@+id/missionImage"
+                android:layout_width="@dimen/Image_size"
+                android:layout_height="@dimen/Image_size"
+                android:layout_marginStart="@dimen/margin_5dp"
+                android:layout_marginTop="@dimen/margin_5dp"
+                android:contentDescription="@string/todo"
+                android:scaleType="fitXY"
+                app:imageSpaceXDataLaunch="@{model.links.mission_patch}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:placeHolder="@{R.drawable.ic_filter}"
+                app:progressSpaceXLaunch="@{spaceXDataProgress}" />
+
+            <ProgressBar
+                android:id="@+id/spaceXDataProgress"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:layout_width="@dimen/margin_16dp"
+                android:layout_height="@dimen/margin_16dp"
+                android:layout_gravity="center"
+                android:theme="@style/CircularProgress"
+                app:layout_constraintBottom_toBottomOf="@+id/missionImage"
+                app:layout_constraintEnd_toEndOf="@+id/missionImage"
+                app:layout_constraintStart_toStartOf="@+id/missionImage"
+                app:layout_constraintTop_toTopOf="@+id/missionImage" />
+
+            <ImageView
+                android:id="@+id/missionStatusIcon"
+                android:layout_width="@dimen/Image_size"
+                android:layout_height="@dimen/Image_size"
+                android:layout_marginTop="@dimen/margin_5dp"
+                android:layout_marginEnd="@dimen/margin_10dp"
+                android:contentDescription="@string/todo"
+                android:src="@{model.launch_success ? @drawable/ic_baseline_check :@android:drawable/ic_menu_close_clear_cancel}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@android:drawable/ic_menu_close_clear_cancel" />
+
+            <TextView
+                android:id="@+id/mission_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_5dp"
+                android:layout_marginTop="@dimen/margin_5dp"
+                android:layout_marginEnd="@dimen/margin_20dp"
+                android:text="@string/mission"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/size_16sp"
+                app:layout_constraintStart_toEndOf="@+id/missionImage"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/mission_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_5dp"
+                android:text="@{model.mission_name}"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/size_16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/mission_name"
+                app:layout_constraintStart_toStartOf="@+id/mission_name"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="rocketscience.model.Al " />
+
+
+            <TextView
+                android:id="@+id/dateAndTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_5dp"
+                android:text="@string/date_time"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/size_16sp"
+                app:layout_constraintStart_toEndOf="@+id/missionImage"
+                app:layout_constraintTop_toBottomOf="@+id/mission_name" />
+
+            <TextView
+                android:id="@+id/dateAndTimeValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{dateTimeValue}"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/size_16sp"
+                app:layout_constraintStart_toStartOf="@+id/mission_value"
+                app:layout_constraintTop_toBottomOf="@+id/mission_name"
+                tools:text="rocketscience.model.A" />
+
+
+            <TextView
+                android:id="@+id/rocketNameAndType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_5dp"
+                android:text="@string/rocket"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/size_16sp"
+                app:layout_constraintStart_toEndOf="@+id/missionImage"
+                app:layout_constraintTop_toBottomOf="@+id/dateAndTime" />
+
+            <TextView
+                android:id="@+id/rocketNameAndTypeValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/rocket_name_type_value(model.rocket.rocket_name,model.rocket.rocket_type)}"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/size_16sp"
+                app:layout_constraintStart_toStartOf="@+id/dateAndTimeValue"
+                app:layout_constraintTop_toBottomOf="@+id/dateAndTimeValue"
+                tools:text="rocketscience.model.A" />
+
+
+            <TextView
+                android:id="@+id/daysSinceFrom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_10dp"
+                android:text="@string/days_since_from_now"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/size_16sp"
+                app:layout_constraintStart_toStartOf="@+id/rocketNameAndType"
+                app:layout_constraintTop_toBottomOf="@+id/rocketNameAndType" />
+
+            <TextView
+                android:id="@+id/daysSinceFromValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_10dp"
+                android:text="@{day}"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/size_16sp"
+                app:layout_constraintStart_toStartOf="@+id/rocketNameAndTypeValue"
+                app:layout_constraintTop_toBottomOf="@+id/rocketNameAndTypeValue"
+                tools:text="rocketscience.model.A" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_1dp"
+            android:background="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
