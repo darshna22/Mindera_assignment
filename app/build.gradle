@@ -37,7 +37,7 @@ android {
     }
 
     afterEvaluate {
-        bundleRelease.dependsOn testReleaseUnitTest
+        bundleRelease.dependsOn testReleaseUnitTest testDebugUnitTest
     }
 }
 
