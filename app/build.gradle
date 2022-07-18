@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.mindera.rocketscience"
-        minSdk 23
+        minSdk 31
         targetSdk 31
         versionCode 1
         versionName "1.0"
