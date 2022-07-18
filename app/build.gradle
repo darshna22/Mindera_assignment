@@ -34,6 +34,9 @@ android {
     buildFeatures{
         dataBinding true
     }
+    afterEvaluate {
+        assembleRelease.dependsOn testReleaseUnitTest, connectedAndroidTest
+    }
 }
 
 dependencies {
