@@ -6,12 +6,11 @@ plugins {
 }
 
 android {
-    compileSdk 28
-
+    compileSdk 30
     defaultConfig {
         applicationId "com.mindera.rocketscience"
         minSdk 21
-        targetSdk 28
+        targetSdk 30
         versionCode 1
         versionName "1.0"
 
