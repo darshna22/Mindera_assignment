@@ -35,8 +35,16 @@ android {
     buildFeatures{
         dataBinding true
     }
-    afterEvaluate {
-        assembleRelease.dependsOn testReleaseUnitTest, connectedAndroidTest
+//    afterEvaluate {
+//        assembleRelease.dependsOn testReleaseUnitTest, connectedAndroidTest
+//    }
+
+    tasks.withType(Test) {
+        testLogging {
+            exceptionFormat "full"
+            events "started", "skipped", "passed", "failed"
+            showStandardStreams true
+        }
     }
 }
 
